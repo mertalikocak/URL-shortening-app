@@ -1,0 +1,111 @@
+.shortener-container {
+  background-color: hsl(0, 0%, 95%);
+  margin-top: 300px;
+  @media screen and (max-width: 700px) {
+    margin-top: 200px;
+  }
+}
+.shortener {
+  background-image: url("../images/bg-shorten-desktop.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: hsl(257, 27%, 26%);
+  margin-top: -7rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 0 40px 0;
+  border-radius: 12px;
+  width: 100%;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
+  input {
+    width: 70%;
+    height: 60px;
+    font-size: 18px;
+    padding-left: 20px;
+    border-radius: 12px;
+    font-family: "Poppins", sans-serif;
+    @media screen and (max-width: 700px) {
+      width: 80%;
+    }
+  }
+  .error {
+    border: 3px solid rgb(206, 1, 1);
+  }
+  button {
+    border-radius: 12px;
+    font-weight: 700;
+    width: 20%;
+    height: 60px;
+    @media screen and (max-width: 700px) {
+      width: 87%;
+    }
+  }
+}
+.url_list {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  gap: 15px;
+
+  .url-row {
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    @media screen and (max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .long {
+      margin-left: 30px;
+      width: 50%;
+
+      @media screen and (max-width: 700px) {
+        width: 90%;
+        word-wrap: break-word;
+      }
+    }
+    .short {
+      margin-right: -15rem;
+      width: 30%;
+      color: hsl(180, 66%, 49%);
+      @media screen and (max-width: 1440px) {
+        margin-right: 0;
+      }
+      @media screen and (max-width: 700px) {
+        width: 90%;
+        margin-left: 30px;
+      }
+    }
+    button {
+      margin-right: 40px;
+      width: 10%;
+      border-radius: 10px;
+      @media screen and (max-width: 1440px) {
+        padding-left: 14px;
+        font-size: 17px;
+      }
+      @media screen and (max-width: 700px) {
+        width: 95%;
+        margin: 0;
+      }
+    }
+    .copied {
+      background-color: hsl(257, 27%, 26%);
+      @media screen and (max-width: 1440px) {
+        display: flex;
+        padding-left: 9px;
+      }
+    }
+  }
+}

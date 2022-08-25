@@ -1,0 +1,23 @@
+.boost {
+  background-image: url(../images/bg-boost-desktop.svg);
+  background-color: hsl(257, 27%, 26%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    color: white;
+    font-size: 2.2rem;
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  button {
+    width: 18%;
+    @media screen and (max-width: 1200px) {
+      width: 40%;
+    }
+  }
+}

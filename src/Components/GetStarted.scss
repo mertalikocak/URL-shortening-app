@@ -1,0 +1,59 @@
+.getStarted {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  padding-bottom: 0;
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    align-items: center;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    @media screen and (max-width: 700px) {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+    h1 {
+      font-weight: 700;
+      line-height: 5rem;
+      margin-block-end: 0;
+      font-size: 4.5rem;
+      color: hsl(255, 11%, 22%);
+      @media screen and (max-width: 1269px) {
+        font-size: 3.5rem;
+      }
+      @media screen and (max-width: 700px) {
+        font-size: 2.5rem;
+      }
+    }
+    p {
+      width: 80%;
+      color: hsl(0, 0%, 75%);
+    }
+    button {
+      margin-top: 30px;
+      width: 30%;
+      @media screen and (max-width: 1269px) {
+        width: 50%;
+      }
+    }
+  }
+  img {
+    right: 0;
+    position: absolute;
+
+    @media screen and (max-width: 1269px) {
+      position: relative;
+      width: 60%;
+      align-self: center;
+    }
+    @media screen and (max-width: 700px) {
+      order: -1;
+      width: 100%;
+    }
+  }
+}
