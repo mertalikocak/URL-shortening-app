@@ -1,6 +1,6 @@
 import "./Shortener.scss";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 function Shortener() {
   const getLocalStorageLong = () => {
     let links = localStorage.getItem("long_links");
@@ -19,46 +19,48 @@ function Shortener() {
       return [];
     }
   };
-  const [link, setLink] = useState();
+
   const [links, setLinks] = useState(getLocalStorageLong());
   const [shortLinks, setShortLinks] = useState(getLocalStorageShort());
-  const [searchInput, setSearchInput] = useState("");
-
-  useEffect(() => {
-    var searchInputx = document.querySelector("#search-bar");
-    setSearchInput(searchInputx);
-    if (link) {
-      getShortenLink();
-    }
-  }, [link]);
-
+  const searchInput = useRef();
+  /* 
   useEffect(() => {
     if (shortLinks !== getLocalStorageShort()) {
       localStorage.setItem("long_links", JSON.stringify(links));
       localStorage.setItem("short_links", JSON.stringify(shortLinks));
     }
-  }, [shortLinks, links]);
+  }, [shortLinks, links]); */
 
-  const handleShorten = () => {
-    if (searchInput.value) {
-      setLink(searchInput.value);
+  const setLocalStorage = (longs, shorts) => {
+    console.log(longs);
+    localStorage.setItem("long_links", JSON.stringify(longs));
+    localStorage.setItem("short_links", JSON.stringify(shorts));
+  };
+
+  const handleShorten = async () => {
+    if (searchInput.current.value) {
+      getShortenLink(searchInput.current.value);
     } else {
-      searchInput.classList.add("error");
+      searchInput.current.classList.add("error");
     }
   };
 
-  const getShortenLink = async () => {
+  const getShortenLink = async (link) => {
     try {
       const res = await axios.post(
         `https://api.shrtco.de/v2/shorten?url=${link}`
       );
       const { short_link } = res.data.result;
-      searchInput.classList.remove("error");
-      searchInput.value = "";
-      setLinks([...links, link]);
-      setShortLinks([...shortLinks, short_link]);
+      searchInput.current.classList.remove("error");
+      searchInput.current.value = "";
+
+      const longs = [...links, link];
+      const shorts = [...shortLinks, short_link];
+      setLinks(longs);
+      setShortLinks(shorts);
+      setLocalStorage(longs, shorts);
     } catch (error) {
-      searchInput.classList.add("error");
+      searchInput.current.classList.add("error");
       console.error("There was an error!", error);
     }
   };
@@ -83,6 +85,7 @@ function Shortener() {
           type="text"
           name="link"
           placeholder="Shorten a link here..."
+          ref={searchInput}
         />
         <button onClick={handleShorten}>Shorten It!</button>
       </div>
